@@ -1,0 +1,11 @@
+{
+  "_comment": "Assignment 3- Test Data",  
+  "validUser": {
+    "username": "standard_user",
+    "password": "secret_sauce"
+  },
+  "invalidUser": {
+    "username": "invalid_user",
+    "password": "wrong_password"
+  }
+}
