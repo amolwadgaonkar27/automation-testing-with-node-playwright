@@ -6,26 +6,6 @@ const loginData = require('../testData/loginData.json');
 
 test.describe('SauceDemo Login Tests', () => {
 
-    test('Valid Login - Verify Inventory Page', async ({ page }) => {
-
-        const loginPage = new LoginPage(page);
-        const inventoryPage = new InventoryPage(page);
-
-        await loginPage.navigateToLoginPage();
-
-        await loginPage.login(
-            loginData.validUser.username,
-            loginData.validUser.password
-        );
-
-        await inventoryPage.verifyInventoryPage();
-
-        await expect(page).toHaveURL(/inventory/);
-
-        await expect(inventoryPage.pageTitle)
-            .toHaveText('Products');
-    });
-
     test('Invalid Login - Validate Error Message', async ({ page }) => {
 
         const loginPage = new LoginPage(page);
@@ -52,3 +32,5 @@ test.describe('SauceDemo Login Tests', () => {
     });
 
 });
+
+//Assignment 2- POM Implementation
