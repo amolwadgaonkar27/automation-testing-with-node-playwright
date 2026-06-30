@@ -1,24 +1,13 @@
-const { test, expect } = require('@playwright/test');
-const { LoginPage } = require('../pages/LoginPage');
+const { test, expect } = require('../fixtures/loginFixture');
 const { InventoryPage } = require('../pages/InventoryPage');
 
-const loginData = require('../testData/loginData.json');
+test('Verify inventory page elements and products', async ({ loggedInPage }) => {
 
-test('Verify inventory page elements and products', async ({ page }) => {
+    const inventoryPage = new InventoryPage(loggedInPage);
 
-    const loginPage = new LoginPage(page);
-    const inventoryPage = new InventoryPage(page);
+    await expect(loggedInPage).toHaveTitle('Swag Labs');
 
-    await loginPage.navigateToLoginPage();
-
-    await loginPage.login(
-        loginData.validUser.username,
-        loginData.validUser.password
-    );
-
-    await expect(page).toHaveTitle('Swag Labs');
-
-    await expect(page).toHaveURL(/inventory/);
+    await expect(loggedInPage).toHaveURL(/inventory/);
 
     await expect(inventoryPage.logo).toBeVisible();
 
@@ -35,4 +24,4 @@ test('Verify inventory page elements and products', async ({ page }) => {
     expect(productCount).toBeGreaterThanOrEqual(6);
 });
 
-//Assignment 2- POM Implementation
+//Assignment 4- Fixtures 

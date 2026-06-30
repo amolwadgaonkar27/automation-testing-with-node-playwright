@@ -1,23 +1,12 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect } = require('../fixtures/loginFixture');
 
-const { LoginPage } = require('../pages/LoginPage');
 const { InventoryPage } = require('../pages/InventoryPage');
 const { CartPage } = require('../pages/CartPage');
 
-const loginData = require('../testData/loginData.json');
+test('Sort products and verify cart items', async ({ loggedInPage }) => {
 
-test('Sort products and verify cart items', async ({ page }) => {
-
-    const loginPage = new LoginPage(page);
-    const inventoryPage = new InventoryPage(page);
-    const cartPage = new CartPage(page);
-
-    await loginPage.navigateToLoginPage();
-
-    await loginPage.login(
-        loginData.validUser.username,
-        loginData.validUser.password
-    );
+    const inventoryPage = new InventoryPage(loggedInPage);
+    const cartPage = new CartPage(loggedInPage);
 
     await inventoryPage.sortProducts('lohi');
 
@@ -62,4 +51,4 @@ test('Sort products and verify cart items', async ({ page }) => {
     );
 });
 
-//Assignment 2- POM Implementation
+//Assignment 4- Fixtures
